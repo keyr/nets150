@@ -1,25 +1,11 @@
-const axios = require('axios')
-const cheerio = require('cheerio')
+const axios = require("axios");
+const cheerio = require("cheerio");
 
-const getReviews = async () => {
-  const { data } = await axios.get(`http://localhost:5000/:crusader`)
-  const $ = await cheerio.load(data)
-  var wordMap = new Map()
+const getReviews = async (gameTitle) => {
+  const { data } = await axios.get(`http://localhost:5000/${gameTitle}`);
+  console.log(data);
+  return data;
+};
 
-  $('.apphub_CardTextContent').each((i, el) => {
-    var review = $(el).text().substring(40).replace('Product received for free', '').trimStart()
-    var reviewArr = review.split(' ')
-    console.log(review)
-    reviewArr.forEach(word => {
-      if (wordMap.has(word)) {
-        wordMap.set(word, wordMap.get(word) + 1)
-      } else {
-        wordMap.set(word, 1)
-      }
-    })
-  })
+export default getReviews;
 
-  return wordMap
-}
-
-export default getReviews
