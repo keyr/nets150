@@ -1,18 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react';
 import { Button, Card, Form } from "react-bootstrap";
+import getReviews from './reviewFetcher'
 
 const style = {
   margin: '10px',
-  width: '700px'
+  width: '800px'
 }
 
 const styleForm = {
-  width: '700px'
+  width: '800px'
 }
 
 const styleButton = {
-  width: '700px',
+  width: '800px',
   background: '#35363a',
   border: '#35363a'
 }
@@ -22,13 +23,14 @@ const generateCloud = (gameTitle) => {
 }
 
 function App() {
+  getReviews()
   const [gameTitle, setGameTitle] = useState("")
 
   return (
     <div style={style}>
       <div>
         <Card>
-          <Card.Body>Welcome. Just input a game title and we'll generate a word cloud using its Steam reviews!</Card.Body>
+          <Card.Body>Welcome. Just input a game title and we'll generate a word cloud using its most helpful Steam reviews!</Card.Body>
         </Card>
         <Form
           onChange={e => setGameTitle(e.target.value)}>
