@@ -7,8 +7,9 @@ const getReviews = async () => {
   var wordMap = new Map()
 
   $('.apphub_CardTextContent').each((i, el) => {
-    var review = $(el).text().substring(40).trimStart()
+    var review = $(el).text().substring(40).replace('Product received for free', '').trimStart()
     var reviewArr = review.split(' ')
+    console.log(review)
     reviewArr.forEach(word => {
       if (wordMap.has(word)) {
         wordMap.set(word, wordMap.get(word) + 1)
