@@ -1,11 +1,8 @@
 const axios = require("axios");
-const cheerio = require("cheerio");
 
-const getReviews = async (gameTitle) => {
+const getReviews = async (gameTitle, setWords) => {
   const { data } = await axios.get(`http://localhost:5000/${gameTitle}`);
-  console.log(data);
-  return data;
+  setWords(data);
 };
 
 export default getReviews;
-
